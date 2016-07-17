@@ -9,9 +9,9 @@ import java.util.Map;
 public class CommodityRepertory {
 
     public String barCode;
-    public Map<String , CommodityInfo> commodityInfomap = new HashMap<String , CommodityInfo>();
+    public static Map<String , CommodityInfo> commodityInfomap = new HashMap<String , CommodityInfo>();
 
-    public class CommodityInfo{
+    public static class CommodityInfo{
         public String name;
         public String unit;
         public double price;
