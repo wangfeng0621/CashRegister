@@ -22,8 +22,20 @@ public class CollectShoppingList {
         }
 
         ShoppingList.shoppinglist.put(barcode,ShoppingList.shoppinglist.get(barcode) -1);
+
         if(ShoppingList.shoppinglist.get(barcode) ==0)
             ShoppingList.shoppinglist.remove(barcode);
+
         return "delete successful";
+    }
+
+    public String modifyCount(String barcode , int value) {
+
+        if(ShoppingList.shoppinglist.get(barcode) == null)
+            return "not exist barcode in shoppinglist";
+
+        ShoppingList.shoppinglist.put(barcode,value );
+
+        return "modified successful";
     }
 }
