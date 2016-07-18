@@ -16,13 +16,13 @@ public class InputCommodityInfoTest {
     public CommodityRepertory commRep;
     @Before
     //从commodityInformation.txt文件中读取所有商品的基本信息,初始化商品信息
-    public void Initialize_commodityInfo(){
+    public void Initialize_commodityInfo() {
         inputCommodityInfo = new InputCommodityInfo();
     }
 
     @Test
     //对已经建立好商品信息库进行插入操作，插入一个全新的商品
-    public void should_return_true_when_insert_a_new_commodity_information(){
+    public void should_return_true_when_insert_a_new_commodity_information() {
         //Given
         String newCommInfo = "ITEM000021 大豆 斤 食品 8.00 无";
 
@@ -39,7 +39,8 @@ public class InputCommodityInfoTest {
     }
 
     @Test
-    public void should_return_false_when_insert_a_existing_commodity_information(){
+    //插入一个已经存在的商品，返回false
+    public void should_return_false_when_insert_a_existing_commodity_information() {
         //Given
         String newCommInfo = "ITEM000005 苹果 斤 水果 5.50 无";
 
@@ -48,10 +49,33 @@ public class InputCommodityInfoTest {
 
         //then
         assertThat(status, is(false));
-        assertThat(commRep.commodityInfomap.get("ITEM000005").price, is(5.50));
-        assertThat(commRep.commodityInfomap.get("ITEM000005").name, is("苹果"));
-        assertThat(commRep.commodityInfomap.get("ITEM000005").unit, is("斤"));
-        assertThat(commRep.commodityInfomap.get("ITEM000005").category, is("水果"));
-        assertThat(commRep.commodityInfomap.get("ITEM000005").privilege, is("无"));
     }
+
+    @Test
+    //修改一个商品的信息，修改字符串应该为 “条形码 标签 值 标签 值 标签 值 ......”
+    public void should_return_true_when_alter_a_commodity_information() {
+        //Given
+        String alterInfo = "ITEM000005 price 6.00";
+
+        //when
+        boolean status = inputCommodityInfo.alterCommInfo(alterInfo);
+
+        //then
+        assertThat(status, is(true));
+        assertThat(commRep.commodityInfomap.get("ITEM000005").price, is(6.00));
+    }
+
+    @Test
+    //修改一个商品的信息，但是这个商品不存在，返回false
+    public void should_return_false_when_alter_a_commodity_information_but_the_commodity_nonexistence() {
+        //Given
+        String alterInfo = "ITEM000025 price 6.00";
+
+        //when
+        boolean status = inputCommodityInfo.alterCommInfo(alterInfo);
+
+        //then
+        assertThat(status, is(false));
+    }
+
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Presenter.DataInput.InputCommodityInfoTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-07-18T03:58:05" hostname="feng" time="0.012">
+  <properties/>
+  <testcase name="should_return_false_when_alter_a_commodity_information_but_the_commodity_nonexistence" classname="Presenter.DataInput.InputCommodityInfoTest" time="0.005"/>
+  <testcase name="should_return_true_when_insert_a_new_commodity_information" classname="Presenter.DataInput.InputCommodityInfoTest" time="0.002"/>
+  <testcase name="should_return_true_when_alter_a_commodity_information" classname="Presenter.DataInput.InputCommodityInfoTest" time="0.001"/>
+  <testcase name="should_return_false_when_insert_a_existing_commodity_information" classname="Presenter.DataInput.InputCommodityInfoTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

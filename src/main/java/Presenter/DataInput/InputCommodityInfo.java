@@ -52,4 +52,34 @@ public class InputCommodityInfo {
         }
         return false;
     }
+
+    public boolean alterCommInfo(String alterInfo) {
+        String alterInf[] = alterInfo.split(" ");
+        if(commodityInfo.commodityInfomap.get(alterInf[0]) != null) {
+            for(int i = 1; i < alterInf.length; i++){
+                modityInfo(alterInf[0],alterInf[i],alterInf[i+1]);
+                i++;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void modityInfo(String barCode, String flag, String value) {
+        if(flag.equals("name")) {
+            commodityInfo.commodityInfomap.get(barCode).name = value;
+        }
+        else if(flag.equals("price")) {
+            commodityInfo.commodityInfomap.get(barCode).price = Double.valueOf(value);
+        }
+        else if(flag.equals("unit")) {
+            commodityInfo.commodityInfomap.get(barCode).unit = value;
+        }
+        else if(flag.equals("privilege")) {
+            commodityInfo.commodityInfomap.get(barCode).privilege = value;
+        }
+        else if(flag.equals("category")) {
+            commodityInfo.commodityInfomap.get(barCode).category = value;
+        }
+    }
 }
