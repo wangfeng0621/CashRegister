@@ -6,13 +6,24 @@ import Model.ShoppingList;
  * Created by feng on 2016/7/17.
  */
 public class CollectShoppingList {
+
+
     public void inputBarcode(String barcode) {
-        if(ShoppingList.shoppinglist.get(barcode) != null)
+
+        ShoppingList.shoppinglist.put(barcode, ShoppingList.shoppinglist.get(barcode) != null ? ShoppingList.shoppinglist.get(barcode) + 1 : 1);
+    }
+
+
+    public String delete(String barcode) {
+
+        if(ShoppingList.shoppinglist.get(barcode) == null)
         {
-            ShoppingList.shoppinglist.put(barcode,ShoppingList.shoppinglist.get(barcode) +1);
+            return "not exist barcode in shoppinglist";
         }
-        else{
-            ShoppingList.shoppinglist.put(barcode,1);
-        }
+
+        ShoppingList.shoppinglist.put(barcode,ShoppingList.shoppinglist.get(barcode) -1);
+        if(ShoppingList.shoppinglist.get(barcode) ==0)
+            ShoppingList.shoppinglist.remove(barcode);
+        return "delete successful";
     }
 }
