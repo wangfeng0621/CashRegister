@@ -20,7 +20,6 @@ public class InputCommodityInfo {
     private void readCommodityInfo(String path) {
         BufferedReader fp;
         try {
-
             fp = new BufferedReader(new FileReader(path));
             String data = fp.readLine();
             while (data != null) {

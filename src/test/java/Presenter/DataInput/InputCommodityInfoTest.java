@@ -92,8 +92,8 @@ public class InputCommodityInfoTest {
     }
 
     @Test
-    //从商品库中删除一个商品，删除成功返回true，需要提供这个商品的条形码
-    public void should_return_false_when_delete_a_existing_commodity_information() {
+    //从商品库中删除一个商品,如果这个商品不存在，返回false
+    public void should_return_false_when_delete_an_nonexistence_commodity_information() {
         //Given
         String deleteInfo = "ITEM000025";
 
