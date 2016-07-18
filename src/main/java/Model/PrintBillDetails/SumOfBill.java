@@ -5,6 +5,6 @@ package Model.PrintBillDetails;
  */
 public class SumOfBill {
 
-    public double total;
-    public double privilege;
+    public static double total;
+    public static double privilege;
 }

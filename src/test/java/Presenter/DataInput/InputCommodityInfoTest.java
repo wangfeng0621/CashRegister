@@ -78,4 +78,30 @@ public class InputCommodityInfoTest {
         assertThat(status, is(false));
     }
 
+    @Test
+    //从商品库中删除一个商品，删除成功返回true，需要提供这个商品的条形码
+    public void should_return_true_when_delete_a_commodity_information() {
+        //Given
+        String deleteInfo = "ITEM000005";
+
+        //when
+        boolean status = inputCommodityInfo.deleteInfo(deleteInfo);
+
+        //then
+        assertThat(status, is(true));
+    }
+
+    @Test
+    //从商品库中删除一个商品，删除成功返回true，需要提供这个商品的条形码
+    public void should_return_false_when_delete_a_existing_commodity_information() {
+        //Given
+        String deleteInfo = "ITEM000025";
+
+        //when
+        boolean status = inputCommodityInfo.deleteInfo(deleteInfo);
+
+        //then
+        assertThat(status, is(false));
+    }
+
 }

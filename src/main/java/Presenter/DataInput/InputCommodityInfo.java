@@ -82,4 +82,12 @@ public class InputCommodityInfo {
             commodityInfo.commodityInfomap.get(barCode).category = value;
         }
     }
+
+    public boolean deleteInfo(String barcode) {
+        if(commodityInfo.commodityInfomap.get(barcode) != null) {
+            commodityInfo.commodityInfomap.remove(barcode);
+            return true;
+        }
+        return false;
+    }
 }
