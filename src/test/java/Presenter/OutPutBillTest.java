@@ -69,6 +69,50 @@ public class OutPutBillTest {
         assertThat(billSum, is(true));
     }
 
+    @Test
+    //购物清单中既含有买二赠一的商品，也含有95折的商品
+    public void should_print_shopping_list_when_Goods_have_commodity_of_three_for_two_and_sale95() {
+        //Given
+        shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,10.45,0.55));
+        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
+        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        bill.total = 20.45;
+        bill.privilege = 4.55;
+
+        //when
+        boolean shoppingListStatus = printBill.printShoppingList();
+        boolean threeforTwoStatus = printBill.printThreeforTwo();
+        boolean billSum = printBill.printSumOfBill();
+
+        //then
+        assertThat(shoppingListStatus, is(true));
+        assertThat(threeforTwoStatus, is(true));
+        assertThat(billSum, is(true));
+    }
+
+    @Test
+    //购物清单中有95折的商品，但是没有买二赠一的商品
+    public void should_print_shopping_list_when_Goods_have_sale95_and_have_no_commodity_of_three_for_two() {
+        //Given
+        shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,10.45,0.55));
+        bill.total = 24.45;
+        bill.privilege = 0.55;
+
+        //when
+        boolean shoppingListStatus = printBill.printShoppingList();
+        boolean threeforTwoStatus = printBill.printThreeforTwo();
+        boolean billSum = printBill.printSumOfBill();
+
+        //then
+        assertThat(shoppingListStatus, is(true));
+        assertThat(threeforTwoStatus, is(false));
+        assertThat(billSum, is(true));
+    }
+
 
 
 
