@@ -22,10 +22,10 @@ public class CollectShoppingListTest {
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
         InputCommodityInfo inputCommodityInfo = new InputCommodityInfo();
-        String goods1 = "ITEM000021-3 羽毛球 个 器材 2.00 买二赠一";
-        String goods2 = "ITEM000022-2 可口可乐 瓶 饮料 3.00 无";
+        String goods1 = "ITEM000021-3 羽毛球 个 器材 2.00 ThreeForTwo";
+        String goods2 = "ITEM000022-2 可口可乐 瓶 饮料 3.00 null";
         String goods3 = "ITEM000023 苹果 斤 水果 10.00 0.95";
-        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 买二赠一_0.95";
+        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 ThreeForTwo_0.95";
         inputCommodityInfo.insertNewCommInfo(goods1);
         inputCommodityInfo.insertNewCommInfo(goods2);
         inputCommodityInfo.insertNewCommInfo(goods3);

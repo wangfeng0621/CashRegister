@@ -25,14 +25,22 @@ public class CalculatePriceTest {
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
         InputCommodityInfo inputCommodityInfo = new InputCommodityInfo();
-        String goods1 = "ITEM000021-3 羽毛球 个 器材 2.00 买二赠一";
-        String goods2 = "ITEM000022-2 可口可乐 瓶 饮料 3.00 无";
+        String goods1 = "ITEM000021-3 羽毛球 个 器材 2.00 ThreeForTwo";
+        String goods2 = "ITEM000022-2 可口可乐 瓶 饮料 3.00 null";
         String goods3 = "ITEM000023 苹果 斤 水果 10.00 0.95";
-        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 买二赠一_0.95";
+        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 ThreeForTwo_0.95";
         inputCommodityInfo.insertNewCommInfo(goods1);
         inputCommodityInfo.insertNewCommInfo(goods2);
         inputCommodityInfo.insertNewCommInfo(goods3);
         inputCommodityInfo.insertNewCommInfo(goods4);
+    }
+
+    @After
+    public void reset_bill_data() {
+        OutPutBill putBill = new OutPutBill();
+        putBill.printFullBill();
+        ResetBillEmpty reset = new ResetBillEmpty();
+        reset.resetAll();
     }
 
     @Test
@@ -117,7 +125,7 @@ public class CalculatePriceTest {
 
     @Test
     //测试在计算价格的同时是否将这些数据添加到准备打印输出的数据结构中
-    public void test_the_result_of_print_when_purchase_three_differet_privilege_goods() {
+    public void test_the_result_of_print_when_purchase_three_different_privilege_goods() {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
@@ -131,18 +139,6 @@ public class CalculatePriceTest {
         //then
         assertThat(ShoppingListAll.shoppingArr.size(), is(3));
         assertThat(PrivilegeThreeforTwo.threeforTwoArr.size(), is(1));
-    }
-
-    @After
-    //清除测试过程中产生的一些底层数据
-    public void clear_data_after_test() {
-
-        CommodityRepertory.commodityInfomap.clear();
-        ShoppingListAll.shoppingArr.clear();
-        PrivilegeThreeforTwo.threeforTwoArr.clear();
-        ShoppingList.shoppinglist.clear();
-        SumOfBill.total = 0;
-        SumOfBill.privilege = 0;
     }
 
 }

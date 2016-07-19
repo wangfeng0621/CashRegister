@@ -3,32 +3,34 @@ package Presenter;
 import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
+import Model.ShoppingList;
 
 /**
  * Created by feng on 2016/7/17.
  */
 public class ResetBillEmpty {
 
-    ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeforTwo threeforTwo = new PrivilegeThreeforTwo();
-    SumOfBill bill = new SumOfBill();
-
     private void resetShoppingList() {
-        shoppingList.shoppingArr.clear();
+        ShoppingList.shoppinglist.clear();
     }
 
     private void resetthreeforList() {
-        threeforTwo.threeforTwoArr.clear();
+        PrivilegeThreeforTwo.threeforTwoArr.clear();
     }
 
     public void resetAll() {
-        resetShoppingList();
+        resetShoppingListAll();
         resetthreeforList();
         resetSumOfBill();
+        resetShoppingList();
+    }
+
+    private void resetShoppingListAll() {
+        ShoppingListAll.shoppingArr.clear();
     }
 
     private void resetSumOfBill() {
-        bill.total = 0.0;
-        bill.privilege = 0.0;
+        SumOfBill.total = 0.0;
+        SumOfBill.privilege = 0.0;
     }
 }

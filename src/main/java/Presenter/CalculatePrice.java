@@ -22,20 +22,26 @@ public class CalculatePrice {
             Map.Entry entry = (Map.Entry) entries.next();
             String barcode = (String) entry.getKey();
 
-            CommodityRepertory.CommodityInfo ci = CommodityRepertory.commodityInfomap.get(barcode);
-            if(ci.privilege.equals("无"))
-                notPrivilCalcu(ci,barcode);
-            if(ci.privilege.contains("买二赠一"))
-                threeForTwoCalcu(ci,barcode);
-            if(ci.privilege.equals("0.95"))
-                sale95Calcu(ci,barcode);
+            CommodityRepertory.CommodityInfo commodityInfo = CommodityRepertory.commodityInfomap.get(barcode);
+            if(commodityInfo.privilege.equals("null")) {
+                notPrivilCalcu(commodityInfo,barcode);
+            }
+            else if(commodityInfo.privilege.contains("ThreeForTwo")) {
+                threeForTwoCalcu(commodityInfo,barcode);
+            }
+            else if(commodityInfo.privilege.equals("0.95")){
+                sale95Calcu(commodityInfo,barcode);
+            }
+
 
         }
     }
 
     private void sale95Calcu(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        int count=0; Double subtotal =0.0;Double privilege = 0.0;
+        int count=0;
+        Double subtotal =0.0;
+        Double privilege = 0.0;
         count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
 
         subtotal = ci.price * count*0.95;
@@ -57,7 +63,9 @@ public class CalculatePrice {
 
     public void notPrivilCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        int count=0; Double subtotal =0.0;Double privilege = 0.0;
+        int count=0;
+        Double subtotal =0.0;
+        Double privilege = 0.0;
 
         count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
 
@@ -70,7 +78,10 @@ public class CalculatePrice {
 
     private void threeForTwoCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        int count=0;  int number=0; Double privilege=0.0;  Double subtotal=0.0;
+        int count=0;
+        int number=0;
+        Double privilege=0.0;
+        Double subtotal=0.0;
 
         count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
 
@@ -80,7 +91,7 @@ public class CalculatePrice {
 
         printShoppingListAll(ci,count,subtotal,privilege);
 
-        printThreeforTwo(ci,count);
+        printThreeforTwo(ci,count/3);
 
         printSumOfBill(subtotal,privilege);
 
@@ -103,14 +114,14 @@ public class CalculatePrice {
 
     public void printShoppingListAll(CommodityRepertory.CommodityInfo ci,int count ,Double subtotal ,Double privil) {
 
-        ShoppingListAll.Shopping ss = new ShoppingListAll.Shopping();
-        ss.subtotal = subtotal;
-        ss.name = ci.name;
-        ss.unit = ci.unit;
-        ss.count = count;
-        ss.price = ci.price;
-        ss.sale95 = privil;
-        ShoppingListAll.shoppingArr.add(ss);
+        ShoppingListAll.Shopping shopping = new ShoppingListAll.Shopping();
+        shopping.subtotal = subtotal;
+        shopping.name = ci.name;
+        shopping.unit = ci.unit;
+        shopping.count = count;
+        shopping.price = ci.price;
+        shopping.sale95 = privil;
+        ShoppingListAll.shoppingArr.add(shopping);
 
     }
 }

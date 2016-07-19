@@ -59,6 +59,4 @@ public class ResetBillEmptyTest {
         assertThat(bill.privilege, is(0.0));
     }
 
-
-
 }
