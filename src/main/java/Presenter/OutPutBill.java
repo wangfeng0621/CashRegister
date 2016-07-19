@@ -75,4 +75,11 @@ public class OutPutBill {
         return true;
     }
 
+    public boolean printFullBill() {
+        printShoppingList();
+        printThreeforTwo();
+        printSumOfBill();
+        return true;
+    }
+
 }

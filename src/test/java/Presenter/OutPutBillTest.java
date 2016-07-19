@@ -113,8 +113,23 @@ public class OutPutBillTest {
         assertThat(billSum, is(true));
     }
 
+ @Test
+    public void should_return_true_when_print_all() {
+        //Given
+        shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,10.45,0.55));
+        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
+        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        bill.total = 20.45;
+        bill.privilege = 4.55;
+
+        //when
+        boolean printBillStatus = printBill.printFullBill();
 
 
-
+        //then
+        assertThat(printBillStatus, is(true));
+    }
 
 }
