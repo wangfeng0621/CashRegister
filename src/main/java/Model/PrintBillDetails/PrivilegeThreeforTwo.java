@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class PrivilegeThreeforTwo {
 
-    public static ArrayList<ThreeforTwo> threeforTwoArr ;
+    public static ArrayList<ThreeforTwo> threeforTwoArr = new ArrayList<ThreeforTwo>() ;
 
     public static class ThreeforTwo {
         public String name;
