@@ -55,7 +55,7 @@ public class CalculatePriceTest {
     }
 
     @Test
-    //测试购物清单中含有买二赠一的商品，计算他们各自价格和总价，返回总价总价为7，优惠为2元
+    //测试购物清单中含有买二赠一的商品，计算他们各自价格和总价，返回总价总价为20，优惠为4元
     public void should_return_20rmb_and_privilege_4_when_ShoppingList_include_ThreeforTwo_goods() {
         //given
         CollectShoppingList cs = new CollectShoppingList();
@@ -78,5 +78,31 @@ public class CalculatePriceTest {
         SumOfBill.privilege = 0;
     }
 
+    @Test
+    //测试购物清单中含有买二赠一同时满足九五折的商品，计算他们各自价格和总价，返回总价总价为20，优惠为4元
+    public void should_return_27rmb_and_privilege_more_7_when_ShoppingList_include_ThreeforTwo_and_sale95_goods() {
+        //given
+        CollectShoppingList cs = new CollectShoppingList();
+        CalculatePrice cp = new CalculatePrice();
+        cs.inputBarcode("ITEM000021-3");
+        cs.inputBarcode("ITEM000021-3");
+        cs.inputBarcode("ITEM000022-2");
+        cs.inputBarcode("ITEM000022-2");
+        cs.inputBarcode("ITEM000024");
+        cs.inputBarcode("ITEM000024");
+        cs.inputBarcode("ITEM000024");
+
+        //when
+        cp.calculatePrice();
+
+        //then
+        assertThat(SumOfBill.total, is(27.00));
+        assertThat(SumOfBill.privilege, is(7.50));
+
+        CommodityRepertory.commodityInfomap.clear();
+        ShoppingList.shoppinglist.clear();
+        SumOfBill.total = 0;
+        SumOfBill.privilege = 0;
+    }
 
 }

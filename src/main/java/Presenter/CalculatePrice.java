@@ -25,7 +25,7 @@ public class CalculatePrice {
             CommodityRepertory.CommodityInfo ci = CommodityRepertory.commodityInfomap.get(barcode);
             if(ci.privilege.equals("无"))
                 notPrivilCalcu(ci,barcode);
-            if(ci.privilege.equals("买二赠一"))
+            if(ci.privilege.contains("买二赠一"))
                 threeForTwoCalcu(ci,barcode);
 
         }
