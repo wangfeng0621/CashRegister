@@ -18,6 +18,7 @@ public class CalculatePrice {
         Iterator entries = ShoppingList.shoppinglist.entrySet().iterator();
 
         while (entries.hasNext()) {
+
             Map.Entry entry = (Map.Entry) entries.next();
             String barcode = (String) entry.getKey();
 
@@ -40,39 +41,59 @@ public class CalculatePrice {
 
     public void notPrivilCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-            int count=0;
-        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
-            ShoppingListAll.Shopping ss = new ShoppingListAll.Shopping();
-            ss.subtotal = ci.price * count;
-            ss.name = ci.name;
-            ss.unit = ci.unit;
-            ss.count = count;
-            ss.price = ci.price;
-            ShoppingListAll.shoppingArr.add(ss);
+        int count=0; Double subtotal =0.0;Double privilege = 0.0;
 
-            SumOfBill.total += ss.subtotal;
+        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
+
+        subtotal = ci.price * count;
+
+        printShoppingListAll(ci,count,subtotal,privilege);
+
+        printSumOfBill(subtotal,privilege);
     }
 
     private void threeForTwoCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        ShoppingListAll.Shopping ss = new ShoppingListAll.Shopping();
-        PrivilegeThreeforTwo.ThreeforTwo pt = new PrivilegeThreeforTwo.ThreeforTwo();
-        int count=0;
+        int count=0;  int number=0; Double privilege=0.0;  Double subtotal=0.0;
+
         count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
-        int number = count-count/3;
-        ss.subtotal = ci.price * number;
+
+        number = count-count/3;
+        subtotal = ci.price * number;
+        privilege = subtotal - ci.price * (count/3);
+
+        printShoppingListAll(ci,count,subtotal,privilege);
+
+        printThreeforTwo(ci,count);
+
+        printSumOfBill(subtotal,privilege);
+
+    }
+
+    private void printSumOfBill(Double subtotal, Double privil) {
+
+        SumOfBill.total += subtotal;
+        SumOfBill.privilege += privil;
+    }
+
+    private void printThreeforTwo(CommodityRepertory.CommodityInfo ci, int count) {
+
+        PrivilegeThreeforTwo.ThreeforTwo pt = new PrivilegeThreeforTwo.ThreeforTwo();
+        pt.name = ci.name;
+        pt.count = count;
+        pt.unit = ci.unit;
+    }
+
+    public void printShoppingListAll(CommodityRepertory.CommodityInfo ci,int count ,Double subtotal ,Double privil) {
+
+        ShoppingListAll.Shopping ss = new ShoppingListAll.Shopping();
+        ss.subtotal = subtotal;
         ss.name = ci.name;
         ss.unit = ci.unit;
         ss.count = count;
         ss.price = ci.price;
+        ss.sale95 = privil;
         ShoppingListAll.shoppingArr.add(ss);
 
-        pt.name = ci.name;
-        pt.count = count;
-        pt.unit = ci.unit;
-
-        SumOfBill.total += ss.subtotal;
-        SumOfBill.privilege += ss.subtotal - ci.price * count/3;
     }
-
 }

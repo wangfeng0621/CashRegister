@@ -47,6 +47,7 @@ public class CalculatePriceTest {
         //then
         assertThat(SumOfBill.total, is(6.00));
         assertThat(SumOfBill.privilege, is(0.00));
+
         ShoppingList.shoppinglist.clear();
         SumOfBill.total = 0;
         SumOfBill.privilege = 0;
@@ -55,7 +56,7 @@ public class CalculatePriceTest {
 
     @Test
     //测试购物清单中含有买二赠一的商品，计算他们各自价格和总价，返回总价总价为7，优惠为2元
-    public void should_return_11rmb_and_printShoppingAll_include_goods_info_when_calculated() {
+    public void should_return_20rmb_and_privilege_4_when_ShoppingList_include_ThreeforTwo_goods() {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
@@ -70,6 +71,7 @@ public class CalculatePriceTest {
         //then
         assertThat(SumOfBill.total, is(20.00));
         assertThat(SumOfBill.privilege, is(4.00));
+
         CommodityRepertory.commodityInfomap.clear();
         ShoppingList.shoppinglist.clear();
         SumOfBill.total = 0;
