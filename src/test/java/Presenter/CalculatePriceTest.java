@@ -4,6 +4,7 @@ import Model.CommodityRepertory;
 import Model.PrintBillDetails.SumOfBill;
 import Model.ShoppingList;
 import Presenter.DataInput.InputCommodityInfo;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,10 +49,6 @@ public class CalculatePriceTest {
         assertThat(SumOfBill.total, is(12.00));
         assertThat(SumOfBill.privilege, is(0.00));
 
-        ShoppingList.shoppinglist.clear();
-        SumOfBill.total = 0;
-        SumOfBill.privilege = 0;
-
     }
 
     @Test
@@ -72,10 +69,6 @@ public class CalculatePriceTest {
         assertThat(SumOfBill.total, is(20.00));
         assertThat(SumOfBill.privilege, is(4.00));
 
-        CommodityRepertory.commodityInfomap.clear();
-        ShoppingList.shoppinglist.clear();
-        SumOfBill.total = 0;
-        SumOfBill.privilege = 0;
     }
 
     @Test
@@ -99,10 +92,6 @@ public class CalculatePriceTest {
         assertThat(SumOfBill.total, is(27.00));
         assertThat(SumOfBill.privilege, is(7.50));
 
-        CommodityRepertory.commodityInfomap.clear();
-        ShoppingList.shoppinglist.clear();
-        SumOfBill.total = 0;
-        SumOfBill.privilege = 0;
     }
 
     @Test
@@ -121,6 +110,12 @@ public class CalculatePriceTest {
         //then
         assertThat(SumOfBill.total, is(19.50));
         assertThat(SumOfBill.privilege, is(2.50));
+
+    }
+
+    @After
+    //清除测试过程中产生的一些底层数据
+    public void clear_data_after_test() {
 
         CommodityRepertory.commodityInfomap.clear();
         ShoppingList.shoppinglist.clear();

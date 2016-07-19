@@ -1,6 +1,7 @@
 package Presenter;
 
 import Model.ShoppingList;
+import org.junit.After;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -18,7 +19,6 @@ public class CollectShoppingListTest {
         //given
         String barcode = "ITEM000001";
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.inputBarcode(barcode);
@@ -33,7 +33,6 @@ public class CollectShoppingListTest {
         //given
         String barcode = "ITEM000001";
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.inputBarcode(barcode);
@@ -49,7 +48,6 @@ public class CollectShoppingListTest {
         //given
         String barcode = "ITEM000001";
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.inputBarcode(barcode);
@@ -67,7 +65,6 @@ public class CollectShoppingListTest {
         //given
         String barcode = "ITEM000002";
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.delete(barcode);
@@ -83,7 +80,6 @@ public class CollectShoppingListTest {
         String barcode = "ITEM000001";
         int value = 4;
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.inputBarcode(barcode);
@@ -102,7 +98,6 @@ public class CollectShoppingListTest {
         String barcode = "ITEM000002";
         int value = 4;
         CollectShoppingList cs = new CollectShoppingList();
-        ShoppingList.shoppinglist.clear();
 
         //when
         cs.inputBarcode(barcode);
@@ -111,5 +106,12 @@ public class CollectShoppingListTest {
 
         //then
         assertThat(cs.modifyCount("ITEM000001",value), is("not exist barcode in shoppinglist"));
+    }
+
+    @After
+    //清除测试过程中产生的一些底层数据
+    public void clear_data_after_test() {
+
+        ShoppingList.shoppinglist.clear();
     }
 }
