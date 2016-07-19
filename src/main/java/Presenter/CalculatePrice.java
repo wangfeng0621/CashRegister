@@ -98,6 +98,7 @@ public class CalculatePrice {
         pt.name = ci.name;
         pt.count = count;
         pt.unit = ci.unit;
+        PrivilegeThreeforTwo.threeforTwoArr.add(pt);
     }
 
     public void printShoppingListAll(CommodityRepertory.CommodityInfo ci,int count ,Double subtotal ,Double privil) {
