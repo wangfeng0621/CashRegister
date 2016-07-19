@@ -1,5 +1,6 @@
 package Presenter;
 
+import Model.CommodityRepertory;
 import Model.ShoppingList;
 
 /**
@@ -8,9 +9,12 @@ import Model.ShoppingList;
 public class CollectShoppingList {
 
 
-    public void inputBarcode(String barcode) {
+    public String inputBarcode(String barcode) {
 
+        if(CommodityRepertory.commodityInfomap.get(barcode) == null)
+            return "purchase failed";
         ShoppingList.shoppinglist.put(barcode, ShoppingList.shoppinglist.get(barcode) != null ? ShoppingList.shoppinglist.get(barcode) + 1 : 1);
+        return "purchase successful";
     }
 
 
