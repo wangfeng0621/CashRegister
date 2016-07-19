@@ -1,6 +1,8 @@
 package Presenter;
 
 import Model.CommodityRepertory;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
+import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import Model.ShoppingList;
 import Presenter.DataInput.InputCommodityInfo;
@@ -96,7 +98,7 @@ public class CalculatePriceTest {
 
     @Test
     //测试购物清单中含有满足买二赠一和九五折的商品，计算他们各自价格和总价，返回总价总价为19.5，优惠为2.5元
-    public void should_return_20rmb_and_privilege_4_when_ShoppingList_include_ThreeforTwo_or_sale95_goods() {
+    public void should_return_more_19rmb_and_privilege_more_2_when_ShoppingList_include_ThreeforTwo_or_sale95_goods() {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
@@ -113,11 +115,31 @@ public class CalculatePriceTest {
 
     }
 
+    @Test
+    //测试在计算价格的同时是否将这些数据添加到准备打印输出的数据结构中
+    public void test_the_result_of_print_when_purchase_three_differet_privilege_goods() {
+        //given
+        CollectShoppingList cs = new CollectShoppingList();
+        CalculatePrice cp = new CalculatePrice();
+        cs.inputBarcode("ITEM000021-3");
+        cs.inputBarcode("ITEM000023");
+        cs.inputBarcode("ITEM000022-2");
+
+        //when
+        cp.calculatePrice();
+
+        //then
+        assertThat(ShoppingListAll.shoppingArr.size(), is(3));
+        assertThat(PrivilegeThreeforTwo.threeforTwoArr.size(), is(1));
+    }
+
     @After
     //清除测试过程中产生的一些底层数据
     public void clear_data_after_test() {
 
         CommodityRepertory.commodityInfomap.clear();
+        ShoppingListAll.shoppingArr.clear();
+        PrivilegeThreeforTwo.threeforTwoArr.clear();
         ShoppingList.shoppinglist.clear();
         SumOfBill.total = 0;
         SumOfBill.privilege = 0;
