@@ -1,5 +1,6 @@
 package Presenter;
 
+import Model.CommodityRepertory;
 import Model.ShoppingList;
 import Presenter.DataInput.InputCommodityInfo;
 import org.junit.After;
@@ -68,10 +69,10 @@ public class CollectShoppingListTest {
         CollectShoppingList cs = new CollectShoppingList();
 
         //when
-        String result = cs.inputBarcode(barcode);
+       cs.inputBarcode(barcode);
 
         //then
-        assertThat(result , is("purchase failed"));
+        assertThat(cs.STATUS , is("purchase failed"));
     }
 
     @Test
@@ -88,7 +89,7 @@ public class CollectShoppingListTest {
 
         //then
         assertThat(ShoppingList.shoppinglist.get(barcode) , is(1));
-        assertThat(cs.delete(barcode), is("delete successful"));
+        assertThat(cs.STATUS , is("delete successful"));
     }
 
     @Test
@@ -102,7 +103,7 @@ public class CollectShoppingListTest {
         cs.delete(barcode);
 
         //then
-        assertThat(cs.delete(barcode), is("not exist barcode in shoppinglist"));
+        assertThat(cs.STATUS , is("not exist barcode in shoppinglist"));
     }
 
     @Test
@@ -117,9 +118,10 @@ public class CollectShoppingListTest {
         cs.inputBarcode(barcode);
         cs.inputBarcode(barcode);
         cs.inputBarcode(barcode);
+        cs.modifyCount("ITEM000023",value);
 
         //then
-        assertThat(cs.modifyCount(barcode,value), is("modified successful"));
+        assertThat(cs.STATUS , is("modified successful"));
         assertThat(ShoppingList.shoppinglist.get(barcode) , is(4));
     }
 
@@ -135,9 +137,9 @@ public class CollectShoppingListTest {
         cs.inputBarcode(barcode);
         cs.inputBarcode(barcode);
         cs.inputBarcode(barcode);
-
+        cs.modifyCount("ITEM000001",value);
         //then
-        assertThat(cs.modifyCount("ITEM000001",value), is("not exist barcode in shoppinglist"));
+        assertThat(cs.STATUS , is("not exist barcode in shoppinglist"));
     }
 
     @After
@@ -145,5 +147,6 @@ public class CollectShoppingListTest {
     public void clear_data_after_test() {
 
         ShoppingList.shoppinglist.clear();
+        CommodityRepertory.commodityInfomap.clear();
     }
 }

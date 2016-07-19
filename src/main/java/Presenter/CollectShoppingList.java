@@ -8,21 +8,26 @@ import Model.ShoppingList;
  */
 public class CollectShoppingList {
 
+    public String STATUS;
 
-    public String inputBarcode(String barcode) {
+    public void inputBarcode(String barcode) {
 
         if(CommodityRepertory.commodityInfomap.get(barcode) == null)
-            return "purchase failed";
+        {
+            STATUS =  "purchase failed";
+            return;
+        }
         ShoppingList.shoppinglist.put(barcode, ShoppingList.shoppinglist.get(barcode) != null ? ShoppingList.shoppinglist.get(barcode) + 1 : 1);
-        return "purchase successful";
+        STATUS = "purchase successful";
     }
 
 
-    public String delete(String barcode) {
+    public void delete(String barcode) {
 
         if(ShoppingList.shoppinglist.get(barcode) == null)
         {
-            return "not exist barcode in shoppinglist";
+            STATUS = "not exist barcode in shoppinglist";
+            return;
         }
 
         ShoppingList.shoppinglist.put(barcode,ShoppingList.shoppinglist.get(barcode) -1);
@@ -30,16 +35,18 @@ public class CollectShoppingList {
         if(ShoppingList.shoppinglist.get(barcode) ==0)
             ShoppingList.shoppinglist.remove(barcode);
 
-        return "delete successful";
+        STATUS = "delete successful";
     }
 
-    public String modifyCount(String barcode , int value) {
+    public void modifyCount(String barcode , int value) {
 
         if(ShoppingList.shoppinglist.get(barcode) == null)
-            return "not exist barcode in shoppinglist";
-
+        {
+            STATUS = "not exist barcode in shoppinglist";
+            return;
+        }
         ShoppingList.shoppinglist.put(barcode,value );
 
-        return "modified successful";
+        STATUS = "modified successful";
     }
 }
