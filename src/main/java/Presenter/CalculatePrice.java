@@ -27,8 +27,24 @@ public class CalculatePrice {
                 notPrivilCalcu(ci,barcode);
             if(ci.privilege.contains("买二赠一"))
                 threeForTwoCalcu(ci,barcode);
+            if(ci.privilege.equals("0.95"))
+                sale95Calcu(ci,barcode);
 
         }
+    }
+
+    private void sale95Calcu(CommodityRepertory.CommodityInfo ci, String barcode) {
+
+        int count=0; Double subtotal =0.0;Double privilege = 0.0;
+        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
+
+        subtotal = ci.price * count*0.95;
+        privilege = ci.price * count*0.05;
+
+        printShoppingListAll(ci,count,subtotal,privilege);
+
+        printSumOfBill(subtotal,privilege);
+
     }
 
 

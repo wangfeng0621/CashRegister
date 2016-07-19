@@ -24,8 +24,8 @@ public class CalculatePriceTest {
         InputCommodityInfo inputCommodityInfo = new InputCommodityInfo();
         String goods1 = "ITEM000021-3 羽毛球 个 器材 2.00 买二赠一";
         String goods2 = "ITEM000022-2 可口可乐 瓶 饮料 3.00 无";
-        String goods3 = "ITEM000023 苹果 斤 水果 9.00 九五";
-        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 买二赠一_九五";
+        String goods3 = "ITEM000023 苹果 斤 水果 10.00 0.95";
+        String goods4 = "ITEM000024 纸巾 盒 日用品 3.50 买二赠一_0.95";
         inputCommodityInfo.insertNewCommInfo(goods1);
         inputCommodityInfo.insertNewCommInfo(goods2);
         inputCommodityInfo.insertNewCommInfo(goods3);
@@ -39,13 +39,13 @@ public class CalculatePriceTest {
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
         cs.inputBarcode("ITEM000022-2");
-       // cs.inputBarcode("ITEM000022");
+        cs.inputBarcode("ITEM000022-2");
 
         //when
         cp.calculatePrice();
 
         //then
-        assertThat(SumOfBill.total, is(6.00));
+        assertThat(SumOfBill.total, is(12.00));
         assertThat(SumOfBill.privilege, is(0.00));
 
         ShoppingList.shoppinglist.clear();
@@ -79,7 +79,7 @@ public class CalculatePriceTest {
     }
 
     @Test
-    //测试购物清单中含有买二赠一同时满足九五折的商品，计算他们各自价格和总价，返回总价总价为20，优惠为4元
+    //测试购物清单中含有买二赠一同时满足九五折的商品，计算他们各自价格和总价，返回总价总价为27，优惠为7.5元
     public void should_return_27rmb_and_privilege_more_7_when_ShoppingList_include_ThreeforTwo_and_sale95_goods() {
         //given
         CollectShoppingList cs = new CollectShoppingList();
@@ -98,6 +98,29 @@ public class CalculatePriceTest {
         //then
         assertThat(SumOfBill.total, is(27.00));
         assertThat(SumOfBill.privilege, is(7.50));
+
+        CommodityRepertory.commodityInfomap.clear();
+        ShoppingList.shoppinglist.clear();
+        SumOfBill.total = 0;
+        SumOfBill.privilege = 0;
+    }
+
+    @Test
+    //测试购物清单中含有满足买二赠一和九五折的商品，计算他们各自价格和总价，返回总价总价为19.5，优惠为2.5元
+    public void should_return_20rmb_and_privilege_4_when_ShoppingList_include_ThreeforTwo_or_sale95_goods() {
+        //given
+        CollectShoppingList cs = new CollectShoppingList();
+        CalculatePrice cp = new CalculatePrice();
+        cs.inputBarcode("ITEM000021-3");
+        cs.inputBarcode("ITEM000023");
+        cs.inputBarcode("ITEM000022-2");
+
+        //when
+        cp.calculatePrice();
+
+        //then
+        assertThat(SumOfBill.total, is(19.50));
+        assertThat(SumOfBill.privilege, is(2.50));
 
         CommodityRepertory.commodityInfomap.clear();
         ShoppingList.shoppinglist.clear();
