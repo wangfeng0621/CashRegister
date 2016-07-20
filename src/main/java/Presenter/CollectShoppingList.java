@@ -4,7 +4,7 @@ import Model.CommodityRepertory;
 import Model.ShoppingList;
 
 /**
- * Created by feng on 2016/7/17.
+ * Created by He on 2016/7/17.
  */
 public class CollectShoppingList {
 

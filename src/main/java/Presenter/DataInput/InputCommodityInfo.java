@@ -65,6 +65,7 @@ public class InputCommodityInfo {
     }
 
     private void modityInfo(String barCode, String flag, String value) {
+
         if(flag.equals("name")) {
             commodityInfo.commodityInfomap.get(barCode).name = value;
         }
