@@ -4,7 +4,7 @@ import Model.CommodityRepertory;
 import Model.ShoppingList;
 
 /**
- * Created by feng on 2016/7/17.
+ * Created by He on 2016/7/17.
  */
 public class CollectShoppingList {
 
@@ -12,33 +12,47 @@ public class CollectShoppingList {
     public CommodityRepertory commInfo= new CommodityRepertory();
 
     public void createShoppingList(String shoppings) {
+
         String goods[] = analysisShoppingListUseOfJson(shoppings);
-        for(int i = 0; i < goods.length; i++ ) {
-            insertOneShoppingRecordToMap(goods[i]);
+        for (String barcode : goods) {
+            insertOneShoppingRecordToMap(barcode);
         }
     }
 
     private void insertOneShoppingRecordToMap(String oneShoppingRecord) {
-        String goods[] = oneShoppingRecord.split("-");
-        if(shoppingList.shoppinglist.get(goods[0]) != null) {
-            Integer count = shoppingList.shoppinglist.get(goods[0]);
-            if(goods.length == 1) {
-                shoppingList.shoppinglist.put(goods[0],count+1);
-            }
-            else {
-                count += Integer.valueOf(goods[1]);
-                shoppingList.shoppinglist.put(goods[0],count);
-            }
+
+        if(oneShoppingRecord.contains("-")) {
+            insertShoppingRecordA(oneShoppingRecord);
         }
         else {
-            if(goods.length == 1) {
-                shoppingList.shoppinglist.put(goods[0],1);
-            }
-            else {
-                Integer count = Integer.valueOf(goods[1]);
-                shoppingList.shoppinglist.put(goods[0],count);
-            }
+            insertShoppingRecordB(oneShoppingRecord);
+        }
+
     }
+
+    private void insertShoppingRecordB(String oneShoppingRecord) {
+
+        if(shoppingList.shoppinglist.get(oneShoppingRecord) != null) {
+            shoppingList.shoppinglist.put(oneShoppingRecord, shoppingList.shoppinglist.get(oneShoppingRecord) + 1);
+        }
+        else {
+            shoppingList.shoppinglist.put(oneShoppingRecord, 1);
+        }
+
+    }
+
+    private void insertShoppingRecordA(String oneShoppingRecord) {
+
+        int count = 0;
+        String goods[] = oneShoppingRecord.split("-");
+        if(shoppingList.shoppinglist.get(goods[0]) != null) {
+            count = shoppingList.shoppinglist.get(goods[0])+Integer.valueOf(goods[1]);
+            shoppingList.shoppinglist.put(goods[0],count);
+        }
+        else {
+            shoppingList.shoppinglist.put(goods[0],Integer.valueOf(goods[1]));
+        }
+
     }
 
     private String[] analysisShoppingListUseOfJson(String shoppings) {

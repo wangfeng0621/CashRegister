@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Created by feng on 2016/7/17.
+ * Created by He on 2016/7/17.
  */
 public class CalculatePrice {
 
@@ -23,14 +23,20 @@ public class CalculatePrice {
             String barcode = (String) entry.getKey();
 
             CommodityRepertory.CommodityInfo commodityInfo = CommodityRepertory.commodityInfomap.get(barcode);
-            if(commodityInfo.privilege.equals("null")) {
+            if(commodityInfo.privilege.equals("null"))
+            {
                 notPrivilegeCalculate(commodityInfo,barcode);
+                continue;
             }
-            else if(commodityInfo.privilege.contains("ThreeForTwo")) {
+            if(commodityInfo.privilege.contains("ThreeForTwo"))
+            {
                 threeForTwoCalculate(commodityInfo,barcode);
+                continue;
             }
-            else if(commodityInfo.privilege.equals("0.95")){
+            if(commodityInfo.privilege.equals("0.95"))
+            {
                 sale95Calculate(commodityInfo,barcode);
+                continue;
             }
 
 
