@@ -26,18 +26,19 @@ public class CalculatePrice {
             if(commodityInfo.privilege.equals("null"))
             {
                 notPrivilegeCalculate(commodityInfo,barcode);
-                return;
+                continue;
             }
             if(commodityInfo.privilege.contains("ThreeForTwo"))
             {
                 threeForTwoCalculate(commodityInfo,barcode);
-                return;
+                continue;
             }
             if(commodityInfo.privilege.equals("0.95"))
             {
                 sale95Calculate(commodityInfo,barcode);
-                return;
+                continue;
             }
+
 
         }
     }
