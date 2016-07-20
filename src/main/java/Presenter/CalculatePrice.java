@@ -23,16 +23,21 @@ public class CalculatePrice {
             String barcode = (String) entry.getKey();
 
             CommodityRepertory.CommodityInfo commodityInfo = CommodityRepertory.commodityInfomap.get(barcode);
-            if(commodityInfo.privilege.equals("null")) {
+            if(commodityInfo.privilege.equals("null"))
+            {
                 notPrivilegeCalculate(commodityInfo,barcode);
+                return;
             }
-            else if(commodityInfo.privilege.contains("ThreeForTwo")) {
+            if(commodityInfo.privilege.contains("ThreeForTwo"))
+            {
                 threeForTwoCalculate(commodityInfo,barcode);
+                return;
             }
-            else if(commodityInfo.privilege.equals("0.95")){
+            if(commodityInfo.privilege.equals("0.95"))
+            {
                 sale95Calculate(commodityInfo,barcode);
+                return;
             }
-
 
         }
     }
