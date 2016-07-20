@@ -29,7 +29,7 @@ public class InputCommodityInfoTest {
     @Test
     //在Before中读入了所有商品的基本信息，商品信息库的大小应该是20
     public void should_length_of_commodity_repertory_is_20_when_Initialize_commodityInfo(){
-        //then
+        //Then
         assertThat(commRep.commodityInfomap.size(), is(20));
     }
 
@@ -39,10 +39,10 @@ public class InputCommodityInfoTest {
         //Given
         String newCommInfo = "ITEM000021 大豆 斤 食品 8.00 无";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.insertNewCommInfo(newCommInfo);
 
-        //then
+        //Then
         assertThat(status, is(true));
         assertThat(commRep.commodityInfomap.get("ITEM000021").price, is(8.00));
         assertThat(commRep.commodityInfomap.get("ITEM000021").name, is("大豆"));
@@ -57,10 +57,10 @@ public class InputCommodityInfoTest {
         //Given
         String newCommInfo = "ITEM000005 苹果 斤 水果 5.50 无";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.insertNewCommInfo(newCommInfo);
 
-        //then
+        //Then
         assertThat(status, is(false));
     }
 
@@ -70,10 +70,10 @@ public class InputCommodityInfoTest {
         //Given
         String alterInfo = "ITEM000005 price 6.00";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.alterCommInfo(alterInfo);
 
-        //then
+        //Then
         assertThat(status, is(true));
         assertThat(commRep.commodityInfomap.get("ITEM000005").price, is(6.00));
     }
@@ -84,10 +84,10 @@ public class InputCommodityInfoTest {
         //Given
         String alterInfo = "ITEM000025 price 6.00";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.alterCommInfo(alterInfo);
 
-        //then
+        //Then
         assertThat(status, is(false));
     }
 
@@ -97,10 +97,10 @@ public class InputCommodityInfoTest {
         //Given
         String deleteInfo = "ITEM000005";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.deleteInfo(deleteInfo);
 
-        //then
+        //Then
         assertThat(status, is(true));
     }
 
@@ -110,10 +110,10 @@ public class InputCommodityInfoTest {
         //Given
         String deleteInfo = "ITEM000025";
 
-        //when
+        //When
         boolean status = inputCommodityInfo.deleteInfo(deleteInfo);
 
-        //then
+        //Then
         assertThat(status, is(false));
     }
 

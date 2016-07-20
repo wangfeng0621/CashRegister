@@ -19,7 +19,7 @@ public class CollectShoppingListTest {
 
     @Before
     //读入商品信息库中的商品信息
-    public void read_data_of_test() {
+    public void read_data_for_test() {
         InputCommodityInfo inputCommodityInfo = new InputCommodityInfo();
     }
 

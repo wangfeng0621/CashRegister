@@ -73,10 +73,10 @@ public class CollectShoppingList {
             if(deleteCommFromShopping(deleteInfo)){
                 return "success";
             }
-            System.out.println("这种商品的删除数量超过了购物清单中的数量！！！");
+            System.out.println("For this kind of goods to delete more than the number of shopping list!!!!!!");
             return "failure";
         }
-        System.out.println("这种商品不在购物清单中！！！");
+        System.out.println("This product is not in the shopping list!!!!!!");
         return "failure";
     }
 

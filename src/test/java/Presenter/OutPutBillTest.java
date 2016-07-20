@@ -19,6 +19,7 @@ public class OutPutBillTest {
     SumOfBill bill = new SumOfBill();
     OutPutBill printBill = new OutPutBill();
 
+    //ä¸ºäº†æµ‹è¯•è¾“å…¥çš„è´­ç‰©æ¸…å•ä¿¡æ¯
     private ShoppingListAll.Shopping addOneBillingRecord(String name, int count, String unit, double price, double subtotal, double sale95) {
 
         ShoppingListAll.Shopping oneBillingRecord = new ShoppingListAll.Shopping();
@@ -32,6 +33,7 @@ public class OutPutBillTest {
 
     }
 
+    //ä¸ºäº†æµ‹è¯•è¾“å…¥çš„æ‰“æŠ˜ä¿¡æ¯
     private PrivilegeThreeForTwo.ThreeForTwo addOneThreeforTwoRecord(String name, int count, String unit) {
         PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeForTwo.ThreeForTwo();
         oneThreeForTwoRecord.name = name;
@@ -41,73 +43,74 @@ public class OutPutBillTest {
     }
 
     @After
+    //æ¸…é™¤æµ‹è¯•äº§ç”Ÿçš„åº•å±‚æ•°æ®
     public void reset_bill_data() {
         ResetBillEmpty reset = new ResetBillEmpty();
         reset.resetAll();
     }
 
     @Test
-    //¹ºÎïÇåµ¥µ±ÖĞÓĞÂò¶şÔùÒ»µÄÉÌÆ·
+    //è´­ç‰©æ¸…å•å½“ä¸­æœ‰ä¹°äºŒèµ ä¸€çš„å•†å“
     public void should_print_shopping_list_when_Goods_have_commodity_of_three_for_two() {
         //Given
-        shoppingList.shoppingArr.add(addOneBillingRecord("¿É¿Ú¿ÉÀÖ",3,"Æ¿",3.00,6.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("ÓğÃ«Çò",5,"¸ö",1.00,4.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("Æ»¹û",2,"½ï",5.50,11.00,0.0));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("¿É¿Ú¿ÉÀÖ",1,"Æ¿"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ÓğÃ«Çò",1,"¸ö"));
+        shoppingList.shoppingArr.add(addOneBillingRecord("å¯å£å¯ä¹",3,"ç“¶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("ç¾½æ¯›çƒ",5,"ä¸ª",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("è‹¹æœ",2,"æ–¤",5.50,11.00,0.0));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("å¯å£å¯ä¹",1,"ç“¶"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ç¾½æ¯›çƒ",1,"ä¸ª"));
         bill.total = 21.00;
         bill.privilege = 4.00;
 
-        //when
+        //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeforTwo();
+        boolean threeforTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
-        //then
+        //Then
         assertThat(shoppingListStatus, is(true));
         assertThat(threeforTwoStatus, is(true));
         assertThat(billSum, is(true));
     }
 
     @Test
-    //¹ºÎïÇåµ¥ÖĞ¼Èº¬ÓĞÂò¶şÔùÒ»µÄÉÌÆ·£¬Ò²º¬ÓĞ95ÕÛµÄÉÌÆ·
+    //è´­ç‰©æ¸…å•ä¸­æ—¢å«æœ‰ä¹°äºŒèµ ä¸€çš„å•†å“ï¼Œä¹Ÿå«æœ‰95æŠ˜çš„å•†å“
     public void should_print_shopping_list_when_Goods_have_commodity_of_three_for_two_and_sale95() {
         //Given
-        shoppingList.shoppingArr.add(addOneBillingRecord("¿É¿Ú¿ÉÀÖ",3,"Æ¿",3.00,6.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("ÓğÃ«Çò",5,"¸ö",1.00,4.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("Æ»¹û",2,"½ï",5.50,10.45,0.55));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("¿É¿Ú¿ÉÀÖ",1,"Æ¿"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ÓğÃ«Çò",1,"¸ö"));
+        shoppingList.shoppingArr.add(addOneBillingRecord("å¯å£å¯ä¹",3,"ç“¶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("ç¾½æ¯›çƒ",5,"ä¸ª",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("è‹¹æœ",2,"æ–¤",5.50,10.45,0.55));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("å¯å£å¯ä¹",1,"ç“¶"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ç¾½æ¯›çƒ",1,"ä¸ª"));
         bill.total = 20.45;
         bill.privilege = 4.55;
 
-        //when
+        //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeforTwo();
+        boolean threeforTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
-        //then
+        //Then
         assertThat(shoppingListStatus, is(true));
         assertThat(threeforTwoStatus, is(true));
         assertThat(billSum, is(true));
     }
 
     @Test
-    //¹ºÎïÇåµ¥ÖĞÓĞ95ÕÛµÄÉÌÆ·£¬µ«ÊÇÃ»ÓĞÂò¶şÔùÒ»µÄÉÌÆ·
+    //è´­ç‰©æ¸…å•ä¸­æœ‰95æŠ˜çš„å•†å“ï¼Œä½†æ˜¯æ²¡æœ‰ä¹°äºŒèµ ä¸€çš„å•†å“
     public void should_print_shopping_list_when_Goods_have_sale95_and_have_no_commodity_of_three_for_two() {
         //Given
-        shoppingList.shoppingArr.add(addOneBillingRecord("¿É¿Ú¿ÉÀÖ",3,"Æ¿",3.00,6.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("ÓğÃ«Çò",5,"¸ö",1.00,4.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("Æ»¹û",2,"½ï",5.50,10.45,0.55));
+        shoppingList.shoppingArr.add(addOneBillingRecord("å¯å£å¯ä¹",3,"ç“¶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("ç¾½æ¯›çƒ",5,"ä¸ª",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("è‹¹æœ",2,"æ–¤",5.50,10.45,0.55));
         bill.total = 24.45;
         bill.privilege = 0.55;
 
-        //when
+        //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeforTwo();
+        boolean threeforTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
-        //then
+        //Then
         assertThat(shoppingListStatus, is(true));
         assertThat(threeforTwoStatus, is(false));
         assertThat(billSum, is(true));
@@ -116,19 +119,18 @@ public class OutPutBillTest {
  @Test
     public void should_return_true_when_print_all() {
         //Given
-        shoppingList.shoppingArr.add(addOneBillingRecord("¿É¿Ú¿ÉÀÖ",3,"Æ¿",3.00,6.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("ÓğÃ«Çò",5,"¸ö",1.00,4.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("Æ»¹û",2,"½ï",5.50,10.45,0.55));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("¿É¿Ú¿ÉÀÖ",1,"Æ¿"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ÓğÃ«Çò",1,"¸ö"));
+        shoppingList.shoppingArr.add(addOneBillingRecord("å¯å£å¯ä¹",3,"ç“¶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("ç¾½æ¯›çƒ",5,"ä¸ª",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("è‹¹æœ",2,"æ–¤",5.50,10.45,0.55));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("å¯å£å¯ä¹",1,"ç“¶"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ç¾½æ¯›çƒ",1,"ä¸ª"));
         bill.total = 20.45;
         bill.privilege = 4.55;
 
-        //when
+        //When
         boolean printBillStatus = printBill.printFullBill();
 
-
-        //then
+        //Then
         assertThat(printBillStatus, is(true));
     }
 

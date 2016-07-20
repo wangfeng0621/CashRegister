@@ -1,20 +1,20 @@
-ITEM000001 ��ë�� �� ���� 1.00 null
-ITEM000002 ѩ�� ƿ ʳƷ 3.00 null
-ITEM000003 �ɿڿ��� ƿ ʳƷ 3.00 null
-ITEM000004 �Ҵ� ƿ ʳƷ 3.00 null
-ITEM000005 ƻ�� �� ˮ�� 5.50 null
-ITEM000006 �� �� ˮ�� 4.50 null
-ITEM000007 ⨺��� �� ˮ�� 1.00 null
-ITEM000008 ���� �� ˮ�� 1.50 null
-ITEM000009 ��ԡ¶ ƿ ����Ʒ 45.00 null
-ITEM000010 ϴ��¶ ƿ ����Ʒ 43.00 null
-ITEM000011 ˮ�� �� ����Ʒ 12.00 null
-ITEM000012 ֽ�� �� ����Ʒ 3.50 null
-ITEM000013 ���� ֧ ����Ʒ 13.00 null
-ITEM000014 ��Ƭ �� ʳƷ 3.00 null
-ITEM000015 ���� �� ʳƷ 18.00 null
-ITEM000016 ţ�� �� ʳƷ 41.00 null
-ITEM000017 ���� �� ʳƷ 18.00 null
-ITEM000018 ���� �� ʳƷ 4.20 null
-ITEM000019 ��¶ˮ ƿ ����Ʒ 8.50 null
-ITEM000020 ���� �� ���� 230.00 null
+ITEM000001 羽毛球 个 器材 1.00 null
+ITEM000002 雪碧 瓶 食品 3.00 null
+ITEM000003 可口可乐 瓶 食品 3.00 null
+ITEM000004 芬达 瓶 食品 3.00 null
+ITEM000005 苹果 斤 水果 5.50 null
+ITEM000006 梨 斤 水果 4.50 null
+ITEM000007 猕猴桃 斤 水果 1.00 null
+ITEM000008 柠檬 个 水果 1.50 null
+ITEM000009 沐浴露 瓶 日用品 45.00 null
+ITEM000010 洗发露 瓶 日用品 43.00 null
+ITEM000011 水杯 个 日用品 12.00 null
+ITEM000012 纸巾 盒 日用品 3.50 null
+ITEM000013 牙膏 支 日用品 13.00 null
+ITEM000014 薯片 包 食品 3.00 null
+ITEM000015 花生 斤 食品 18.00 null
+ITEM000016 牛肉 斤 食品 41.00 null
+ITEM000017 猪肉 斤 食品 18.00 null
+ITEM000018 大米 斤 食品 4.20 null
+ITEM000019 花露水 瓶 日用品 8.50 null
+ITEM000020 篮球 个 器材 230.00 null

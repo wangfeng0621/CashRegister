@@ -34,6 +34,7 @@ public class CalculatePriceTest {
     }
 
     @After
+    //打印账单和清除账单数据
     public void reset_bill_data() {
         OutPutBill putBill = new OutPutBill();
         putBill.printFullBill();

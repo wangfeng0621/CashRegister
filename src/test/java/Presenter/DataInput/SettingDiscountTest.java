@@ -18,37 +18,37 @@ public class SettingDiscountTest {
 
 
     @Before
-    //½¨Á¢ÉÌÆ·ĞÅÏ¢¿â
-    //¶ÁÈë´òÕÛĞÅÏ¢
+    //å»ºç«‹å•†å“ä¿¡æ¯åº“
+    //è¯»å…¥æ‰“æŠ˜ä¿¡æ¯
     public void Initialize_commodityInfo() {
         inputCommodityInfo = new InputCommodityInfo();
         discount = new SettingDiscount();
     }
 
     @Test
-    //¸üĞÂÉÌÆ·µÄ´òÕÛĞÅÏ¢£¬Èç¹û´æÔÚÕâ¸öÉÌÆ·²¢ÇÒ¸üĞÂ³É¹¦£¬·µ»Øtrue
+    //æ›´æ–°å•†å“çš„æ‰“æŠ˜ä¿¡æ¯ï¼Œå¦‚æœå­˜åœ¨è¿™ä¸ªå•†å“å¹¶ä¸”æ›´æ–°æˆåŠŸï¼Œè¿”å›true
     public void should_return_true_when_update_privilege_of_a_commodity() {
         //Given
         String updateInfo = "ITEM000008 0.95";
 
-        //when
+        //When
         boolean status = discount.update(updateInfo);
 
-        //then
+        //Then
         assertThat(status, is(true));
         assertThat(commRep.commodityInfomap.get("ITEM000008").privilege, is("0.95"));
     }
 
     @Test
-    //¸üĞÂÉÌÆ·µÄ´òÕÛĞÅÏ¢£¬Èç¹û²»´æÔÚÕâ¸öÉÌÆ·£¬·µ»Øtrue
+    //æ›´æ–°å•†å“çš„æ‰“æŠ˜ä¿¡æ¯ï¼Œå¦‚æœä¸å­˜åœ¨è¿™ä¸ªå•†å“ï¼Œè¿”å›true
     public void should_return_false_when_update_privilege_of_an_nonexistence_commodity() {
         //Given
         String updateInfo = "ITEM000028 0.95";
 
-        //when
+        //When
         boolean status = discount.update(updateInfo);
 
-        //then
+        //Then
         assertThat(status, is(false));
     }
 

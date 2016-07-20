@@ -42,17 +42,17 @@ public class ResetBillEmptyTest {
     @Test
     public void should_shoppingList_size_is_0_when_reset_shopping_list() {
         //Given
-        shoppingList.shoppingArr.add(addOneBillingRecord("¿É¿Ú¿ÉÀÖ",3,"Æ¿",3.00,6.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("ÓğÃ«Çò",5,"¸ö",1.00,4.00,0.0));
-        shoppingList.shoppingArr.add(addOneBillingRecord("Æ»¹û",2,"½ï",5.50,11.00,0.0));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("¿É¿Ú¿ÉÀÖ",1,"Æ¿"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ÓğÃ«Çò",1,"¸ö"));
+        shoppingList.shoppingArr.add(addOneBillingRecord("å¯å£å¯ä¹",3,"ç“¶",3.00,6.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("ç¾½æ¯›çƒ",5,"ä¸ª",1.00,4.00,0.0));
+        shoppingList.shoppingArr.add(addOneBillingRecord("è‹¹æœ",2,"æ–¤",5.50,11.00,0.0));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("å¯å£å¯ä¹",1,"ç“¶"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("ç¾½æ¯›çƒ",1,"ä¸ª"));
         bill.total = 21.00;
         bill.privilege = 4.00;
-        //when
+        //When
         reset.resetAll();
 
-        //then
+        //Then
         assertThat(shoppingList.shoppingArr.size(), is(0));
         assertThat(threeforTwo.threeForTwoArr.size(), is(0));
         assertThat(bill.total, is(0.0));

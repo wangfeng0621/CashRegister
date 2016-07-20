@@ -88,7 +88,9 @@ public class CalculatePrice {
         pt.name = ci.name;
         pt.count = count;
         pt.unit = ci.unit;
-        PrivilegeThreeForTwo.threeForTwoArr.add(pt);
+        if(pt.count > 0 ) {
+            PrivilegeThreeForTwo.threeForTwoArr.add(pt);
+        }
     }
 
     public void printShoppingListAll(CommodityRepertory.CommodityInfo ci,int count ,Double subtotal ,Double privil) {

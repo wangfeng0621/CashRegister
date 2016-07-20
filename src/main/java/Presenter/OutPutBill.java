@@ -23,7 +23,7 @@ public class OutPutBill {
 
     private void printShoppingList(int len) {
         System.out.println("```");
-        System.out.println("***<Ã»Ç®×¬ÉÌµê>¹ºÎïÇåµ¥***");
+        System.out.println("***<æ²¡é’±èµšå•†åº—>è´­ç‰©æ¸…å•***");
         for(int i = 0; i < len; i++) {
             ShoppingListAll.Shopping oneShoppingRecord = shoppingList.shoppingArr.get(i);
             printOneShoppingRecord(oneShoppingRecord);
@@ -32,29 +32,29 @@ public class OutPutBill {
     }
 
     private void printOneShoppingRecord(ShoppingListAll.Shopping oneShoppingRecord) {
-        System.out.print("Ãû³Æ£º"+oneShoppingRecord.name+"£¬");
-        System.out.print("ÊıÁ¿£º"+oneShoppingRecord.count+oneShoppingRecord.unit+"£¬");
-        System.out.print("µ¥¼Û£º"+String.format("%.2f", oneShoppingRecord.price)+"(Ôª)£¬");
-        System.out.print("Ğ¡¼Æ£º"+String.format("%.2f", oneShoppingRecord.subtotal)+"(Ôª)");
+        System.out.print("åç§°ï¼š"+oneShoppingRecord.name+"ï¼Œ");
+        System.out.print("æ•°é‡ï¼š"+oneShoppingRecord.count+oneShoppingRecord.unit+"ï¼Œ");
+        System.out.print("å•ä»·ï¼š"+String.format("%.2f", oneShoppingRecord.price)+"(å…ƒ)ï¼Œ");
+        System.out.print("å°è®¡ï¼š"+String.format("%.2f", oneShoppingRecord.subtotal)+"(å…ƒ)");
         if( oneShoppingRecord.sale95 != 0.0 ) {
-            System.out.println(",½ÚÊ¡£º"+String.format("%.2f", oneShoppingRecord.sale95)+"(Ôª)");
+            System.out.println(",èŠ‚çœï¼š"+String.format("%.2f", oneShoppingRecord.sale95)+"(å…ƒ)");
         }
         else  {
             System.out.println();
         }
     }
 
-    public boolean printThreeforTwo() {
+    public boolean printThreeForTwo() {
         int len = threeforTwo.threeForTwoArr.size();
         if( len > 0 ) {
-            printThreeforTwo(len);
+            printThreeForTwo(len);
             return true;
         }
         return false;
     }
 
-    private void printThreeforTwo(int len) {
-        System.out.println("Âò¶şÔùÒ»ÉÌÆ·£º");
+    private void printThreeForTwo(int len) {
+        System.out.println("ä¹°äºŒèµ ä¸€å•†å“ï¼š");
         for(int i = 0; i < len; i++) {
             PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = threeforTwo.threeForTwoArr.get(i);
             printOneThreeforTwoRecord(oneThreeForTwoRecord);
@@ -63,13 +63,13 @@ public class OutPutBill {
     }
 
     private void printOneThreeforTwoRecord(PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord) {
-        System.out.print("Ãû³Æ£º"+ oneThreeForTwoRecord.name+"£¬");
-        System.out.println("ÊıÁ¿£º"+ oneThreeForTwoRecord.count+ oneThreeForTwoRecord.unit);
+        System.out.print("åç§°ï¼š"+ oneThreeForTwoRecord.name+"ï¼Œ");
+        System.out.println("æ•°é‡ï¼š"+ oneThreeForTwoRecord.count+ oneThreeForTwoRecord.unit);
     }
 
     public boolean printSumOfBill() {
-        System.out.println("×Ü¼Æ£º"+String.format("%.2f",bill.total)+"(Ôª)");
-        System.out.println( bill.privilege > 0.0 ? "½ÚÊ¡£º"+String.format("%.2f",bill.privilege)+"(Ôª)": "");
+        System.out.println("æ€»è®¡ï¼š"+String.format("%.2f",bill.total)+"(å…ƒ)");
+        System.out.println( bill.privilege > 0.0 ? "èŠ‚çœï¼š"+String.format("%.2f",bill.privilege)+"(å…ƒ)": "");
         System.out.println("**********************");
         System.out.println("```");
         return true;
@@ -77,7 +77,7 @@ public class OutPutBill {
 
     public boolean printFullBill() {
         printShoppingList();
-        printThreeforTwo();
+        printThreeForTwo();
         printSumOfBill();
         return true;
     }
