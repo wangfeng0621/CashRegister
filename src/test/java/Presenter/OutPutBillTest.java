@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import org.junit.After;
@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class OutPutBillTest {
 
     ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeForTwo threeforTwo = new PrivilegeThreeForTwo();
+    PrivilegeThreeforTwo threeForTwo = new PrivilegeThreeforTwo();
     SumOfBill bill = new SumOfBill();
     OutPutBill printBill = new OutPutBill();
 
@@ -34,8 +34,8 @@ public class OutPutBillTest {
     }
 
     //为了测试输入的打折信息
-    private PrivilegeThreeForTwo.ThreeForTwo addOneThreeforTwoRecord(String name, int count, String unit) {
-        PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeForTwo.ThreeForTwo();
+    private PrivilegeThreeforTwo.ThreeForTwo addOneThreeForTwoRecord(String name, int count, String unit) {
+        PrivilegeThreeforTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeforTwo.ThreeForTwo();
         oneThreeForTwoRecord.name = name;
         oneThreeForTwoRecord.count = count;
         oneThreeForTwoRecord.unit = unit;
@@ -56,19 +56,19 @@ public class OutPutBillTest {
         shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,11.00,0.0));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("可口可乐",1,"瓶"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("羽毛球",1,"个"));
         bill.total = 21.00;
         bill.privilege = 4.00;
 
         //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeForTwo();
+        boolean threeForTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
         //Then
         assertThat(shoppingListStatus, is(true));
-        assertThat(threeforTwoStatus, is(true));
+        assertThat(threeForTwoStatus, is(true));
         assertThat(billSum, is(true));
     }
 
@@ -79,19 +79,19 @@ public class OutPutBillTest {
         shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,10.45,0.55));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("可口可乐",1,"瓶"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("羽毛球",1,"个"));
         bill.total = 20.45;
         bill.privilege = 4.55;
 
         //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeForTwo();
+        boolean threeForTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
         //Then
         assertThat(shoppingListStatus, is(true));
-        assertThat(threeforTwoStatus, is(true));
+        assertThat(threeForTwoStatus, is(true));
         assertThat(billSum, is(true));
     }
 
@@ -107,12 +107,12 @@ public class OutPutBillTest {
 
         //When
         boolean shoppingListStatus = printBill.printShoppingList();
-        boolean threeforTwoStatus = printBill.printThreeForTwo();
+        boolean threeForTwoStatus = printBill.printThreeForTwo();
         boolean billSum = printBill.printSumOfBill();
 
         //Then
         assertThat(shoppingListStatus, is(true));
-        assertThat(threeforTwoStatus, is(false));
+        assertThat(threeForTwoStatus, is(false));
         assertThat(billSum, is(true));
     }
 
@@ -122,8 +122,8 @@ public class OutPutBillTest {
         shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,10.45,0.55));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
-        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("可口可乐",1,"瓶"));
+        threeForTwo.threeForTwoArr.add(addOneThreeForTwoRecord("羽毛球",1,"个"));
         bill.total = 20.45;
         bill.privilege = 4.55;
 

@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class ResetBillEmptyTest {
 
     ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeForTwo threeforTwo = new PrivilegeThreeForTwo();
+    PrivilegeThreeforTwo threeforTwo = new PrivilegeThreeforTwo();
     SumOfBill bill = new SumOfBill();
     ResetBillEmpty reset = new ResetBillEmpty();
 
@@ -31,8 +31,8 @@ public class ResetBillEmptyTest {
 
     }
 
-    private PrivilegeThreeForTwo.ThreeForTwo addOneThreeforTwoRecord(String name, int count, String unit) {
-        PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeForTwo.ThreeForTwo();
+    private PrivilegeThreeforTwo.ThreeForTwo addOneThreeforTwoRecord(String name, int count, String unit) {
+        PrivilegeThreeforTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeforTwo.ThreeForTwo();
         oneThreeForTwoRecord.name = name;
         oneThreeForTwoRecord.count = count;
         oneThreeForTwoRecord.unit = unit;

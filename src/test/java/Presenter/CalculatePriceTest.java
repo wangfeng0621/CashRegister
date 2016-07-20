@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import Presenter.DataInput.InputCommodityInfo;
@@ -127,7 +127,7 @@ public class CalculatePriceTest {
 
         //Then
         assertThat(ShoppingListAll.shoppingArr.size(), is(3));
-        assertThat(PrivilegeThreeForTwo.threeForTwoArr.size(), is(1));
+        assertThat(PrivilegeThreeforTwo.threeForTwoArr.size(), is(1));
     }
 
 }

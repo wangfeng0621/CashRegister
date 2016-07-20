@@ -1,7 +1,7 @@
 package Presenter;
 
 import Model.CommodityRepertory;
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import Model.ShoppingList;
@@ -84,12 +84,12 @@ public class CalculatePrice {
 
     private void printThreeForTwo(CommodityRepertory.CommodityInfo ci, int count) {
 
-        PrivilegeThreeForTwo.ThreeForTwo pt = new PrivilegeThreeForTwo.ThreeForTwo();
+        PrivilegeThreeforTwo.ThreeForTwo pt = new PrivilegeThreeforTwo.ThreeForTwo();
         pt.name = ci.name;
         pt.count = count;
         pt.unit = ci.unit;
         if(pt.count > 0 ) {
-            PrivilegeThreeForTwo.threeForTwoArr.add(pt);
+            PrivilegeThreeforTwo.threeForTwoArr.add(pt);
         }
     }
 

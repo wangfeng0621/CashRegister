@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import Model.ShoppingList;
@@ -15,7 +15,7 @@ public class ResetBillEmpty {
     }
 
     private void resetthreeforList() {
-        PrivilegeThreeForTwo.threeForTwoArr.clear();
+        PrivilegeThreeforTwo.threeForTwoArr.clear();
     }
 
     public void resetAll() {

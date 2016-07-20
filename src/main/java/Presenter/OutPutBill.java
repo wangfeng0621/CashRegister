@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeForTwo;
+import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 
@@ -10,7 +10,7 @@ import Model.PrintBillDetails.SumOfBill;
 public class OutPutBill {
 
     ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeForTwo threeforTwo = new PrivilegeThreeForTwo();
+    PrivilegeThreeforTwo threeforTwo = new PrivilegeThreeforTwo();
     SumOfBill bill = new SumOfBill();
     public boolean printShoppingList() {
         int len = shoppingList.shoppingArr.size();
@@ -56,13 +56,13 @@ public class OutPutBill {
     private void printThreeForTwo(int len) {
         System.out.println("买二赠一商品：");
         for(int i = 0; i < len; i++) {
-            PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = threeforTwo.threeForTwoArr.get(i);
+            PrivilegeThreeforTwo.ThreeForTwo oneThreeForTwoRecord = threeforTwo.threeForTwoArr.get(i);
             printOneThreeforTwoRecord(oneThreeForTwoRecord);
         }
         System.out.println("----------------------");
     }
 
-    private void printOneThreeforTwoRecord(PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord) {
+    private void printOneThreeforTwoRecord(PrivilegeThreeforTwo.ThreeForTwo oneThreeForTwoRecord) {
         System.out.print("名称："+ oneThreeForTwoRecord.name+"，");
         System.out.println("数量："+ oneThreeForTwoRecord.count+ oneThreeForTwoRecord.unit);
     }
