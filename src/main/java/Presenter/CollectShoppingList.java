@@ -8,45 +8,113 @@ import Model.ShoppingList;
  */
 public class CollectShoppingList {
 
-    public String STATUS;
+    public ShoppingList shoppingList = new ShoppingList();
+    public CommodityRepertory commInfo= new CommodityRepertory();
 
-    public void inputBarcode(String barcode) {
-
-        if(CommodityRepertory.commodityInfomap.get(barcode) == null)
-        {
-            STATUS =  "purchase failed";
-            return;
+    public void createShoppingList(String shoppings) {
+        String goods[] = analysisShoppingListUseOfJson(shoppings);
+        for(int i = 0; i < goods.length; i++ ) {
+            insertOneShoppingRecordToMap(goods[i]);
         }
-        ShoppingList.shoppinglist.put(barcode, ShoppingList.shoppinglist.get(barcode) != null ? ShoppingList.shoppinglist.get(barcode) + 1 : 1);
-        STATUS = "purchase successful";
+    }
+
+    private void insertOneShoppingRecordToMap(String oneShoppingRecord) {
+        String goods[] = oneShoppingRecord.split("-");
+        if(shoppingList.shoppinglist.get(goods[0]) != null) {
+            Integer count = shoppingList.shoppinglist.get(goods[0]);
+            if(goods.length == 1) {
+                shoppingList.shoppinglist.put(goods[0],count+1);
+            }
+            else {
+                count += Integer.valueOf(goods[1]);
+                shoppingList.shoppinglist.put(goods[0],count);
+            }
+        }
+        else {
+            if(goods.length == 1) {
+                shoppingList.shoppinglist.put(goods[0],1);
+            }
+            else {
+                Integer count = Integer.valueOf(goods[1]);
+                shoppingList.shoppinglist.put(goods[0],count);
+            }
+    }
+    }
+
+    private String[] analysisShoppingListUseOfJson(String shoppings) {
+        shoppings = shoppings.replace("[", "");
+        shoppings = shoppings.replace("]", "");
+        shoppings = shoppings.replace("'", "");
+        shoppings = shoppings.replace(" ", "");
+        String goods[] = shoppings.split(",");
+        return goods;
+    }
+
+    public String addNewGoods(String goods) {
+        String barcode[] = goods.split("-");
+        if(checkBarcode(barcode[0])){
+            insertOneShoppingRecordToMap(goods);
+            return "success";
+        }
+        return "failure";
+    }
+
+    private boolean checkBarcode(String barcode) {
+        if(commInfo.commodityInfomap.get(barcode) != null) {
+            return true;
+        }
+        return false;
     }
 
 
-    public void delete(String barcode) {
-
-        if(ShoppingList.shoppinglist.get(barcode) == null)
-        {
-            STATUS = "not exist barcode in shoppinglist";
-            return;
+    public String deleteComm(String deleteInfo) {
+        String barcode[] = deleteInfo.split("-");
+        if(checkBarcodeInShoppingList(barcode[0])){
+            if(deleteCommFromShopping(deleteInfo)){
+                return "success";
+            }
+            System.out.println("这种商品的删除数量超过了购物清单中的数量！！！");
+            return "failure";
         }
-
-        ShoppingList.shoppinglist.put(barcode,ShoppingList.shoppinglist.get(barcode) -1);
-
-        if(ShoppingList.shoppinglist.get(barcode) ==0)
-            ShoppingList.shoppinglist.remove(barcode);
-
-        STATUS = "delete successful";
+        System.out.println("这种商品不在购物清单中！！！");
+        return "failure";
     }
 
-    public void modifyCount(String barcode , int value) {
-
-        if(ShoppingList.shoppinglist.get(barcode) == null)
-        {
-            STATUS = "not exist barcode in shoppinglist";
-            return;
+    private boolean checkBarcodeInShoppingList(String barcode) {
+        if(shoppingList.shoppinglist.get(barcode) != null) {
+            return true;
         }
-        ShoppingList.shoppinglist.put(barcode,value );
+        return false;
+    }
 
-        STATUS = "modified successful";
+    private boolean deleteCommFromShopping(String deleteInfo) {
+        String barcode[] = deleteInfo.split("-");
+        if(barcode.length == 1 ) {
+            int count = shoppingList.shoppinglist.get(barcode[0]) - 1;
+            if(count == 0) {
+                shoppingList.shoppinglist.remove(barcode[0]);
+            }
+            else {
+                shoppingList.shoppinglist.put(barcode[0],count);
+            }
+        }
+        else if(barcode[1].equals("ALL")) {
+            shoppingList.shoppinglist.remove(barcode[0]);
+        }
+        else {
+            int count = shoppingList.shoppinglist.get(barcode[0]);
+            int delNum = Integer.valueOf(barcode[1]);
+            if(delNum > count){
+                return false;
+            }
+            else if(delNum == count){
+                shoppingList.shoppinglist.remove(barcode[0]);
+            }
+            else {
+                count -= delNum;
+                shoppingList.shoppinglist.put(barcode[0],count);
+            }
+        }
+        return true;
     }
 }

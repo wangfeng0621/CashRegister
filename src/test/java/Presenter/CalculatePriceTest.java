@@ -1,10 +1,8 @@
 package Presenter;
 
-import Model.CommodityRepertory;
 import Model.PrintBillDetails.PrivilegeThreeforTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
-import Model.ShoppingList;
 import Presenter.DataInput.InputCommodityInfo;
 import org.junit.After;
 import org.junit.Before;
@@ -49,8 +47,8 @@ public class CalculatePriceTest {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
-        cs.inputBarcode("ITEM000022-2");
-        cs.inputBarcode("ITEM000022-2");
+        cs.addNewGoods("ITEM000022-2");
+        cs.addNewGoods("ITEM000022-2");
 
         //when
         cp.calculatePrice();
@@ -67,10 +65,10 @@ public class CalculatePriceTest {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000022-2");
-        cs.inputBarcode("ITEM000022-2");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000022-2");
+        cs.addNewGoods("ITEM000022-2");
 
         //when
         cp.calculatePrice();
@@ -87,13 +85,13 @@ public class CalculatePriceTest {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000022-2");
-        cs.inputBarcode("ITEM000022-2");
-        cs.inputBarcode("ITEM000024");
-        cs.inputBarcode("ITEM000024");
-        cs.inputBarcode("ITEM000024");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000022-2");
+        cs.addNewGoods("ITEM000022-2");
+        cs.addNewGoods("ITEM000024");
+        cs.addNewGoods("ITEM000024");
+        cs.addNewGoods("ITEM000024");
 
         //when
         cp.calculatePrice();
@@ -110,9 +108,9 @@ public class CalculatePriceTest {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000023");
-        cs.inputBarcode("ITEM000022-2");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000023");
+        cs.addNewGoods("ITEM000022-2");
 
         //when
         cp.calculatePrice();
@@ -129,9 +127,9 @@ public class CalculatePriceTest {
         //given
         CollectShoppingList cs = new CollectShoppingList();
         CalculatePrice cp = new CalculatePrice();
-        cs.inputBarcode("ITEM000021-3");
-        cs.inputBarcode("ITEM000023");
-        cs.inputBarcode("ITEM000022-2");
+        cs.addNewGoods("ITEM000021-3");
+        cs.addNewGoods("ITEM000023");
+        cs.addNewGoods("ITEM000022-2");
 
         //when
         cp.calculatePrice();

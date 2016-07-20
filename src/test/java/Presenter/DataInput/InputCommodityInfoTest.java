@@ -21,6 +21,13 @@ public class InputCommodityInfoTest {
     }
 
     @Test
+    //在Before中读入了所有商品的基本信息，商品信息库的大小应该是20
+    public void should_length_of_commodity_repertory_is_20_when_Initialize_commodityInfo(){
+        //then
+        assertThat(commRep.commodityInfomap.size(), is(20));
+    }
+
+    @Test
     //对已经建立好商品信息库进行插入操作，插入一个全新的商品
     public void should_return_true_when_insert_a_new_commodity_information() {
         //Given
