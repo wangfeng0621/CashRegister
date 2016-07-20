@@ -17,11 +17,6 @@ public class CollectShoppingListTest {
     public CollectShoppingList collectShoppingList = new CollectShoppingList();
     public ShoppingList shoppingList = new ShoppingList();
 
-    @Before
-    //读入商品信息库中的商品信息
-    public void read_data_for_test() {
-        InputCommodityInfo inputCommodityInfo = new InputCommodityInfo();
-    }
 
     @After
     //清除测试过程中产生的一些底层数据
