@@ -21,19 +21,23 @@ public class CollectShoppingList {
 
     private void insertOneShoppingRecordToMap(String oneShoppingRecord) {
 
-        if(oneShoppingRecord.contains("-"))
+        if(oneShoppingRecord.contains("-")) {
             insertShoppingRecordA(oneShoppingRecord);
-        else
+        }
+        else {
             insertShoppingRecordB(oneShoppingRecord);
+        }
 
     }
 
     private void insertShoppingRecordB(String oneShoppingRecord) {
 
-        if(shoppingList.shoppinglist.get(oneShoppingRecord) != null)
-            shoppingList.shoppinglist.put(oneShoppingRecord, shoppingList.shoppinglist.get(oneShoppingRecord)+1);
-        else
-            shoppingList.shoppinglist.put(oneShoppingRecord,1);
+        if(shoppingList.shoppinglist.get(oneShoppingRecord) != null) {
+            shoppingList.shoppinglist.put(oneShoppingRecord, shoppingList.shoppinglist.get(oneShoppingRecord) + 1);
+        }
+        else {
+            shoppingList.shoppinglist.put(oneShoppingRecord, 1);
+        }
 
     }
 
@@ -41,13 +45,11 @@ public class CollectShoppingList {
 
         int count = 0;
         String goods[] = oneShoppingRecord.split("-");
-        if(shoppingList.shoppinglist.get(goods[0]) != null)
-        {
+        if(shoppingList.shoppinglist.get(goods[0]) != null) {
             count = shoppingList.shoppinglist.get(goods[0])+Integer.valueOf(goods[1]);
             shoppingList.shoppinglist.put(goods[0],count);
         }
-        else
-        {
+        else {
             shoppingList.shoppinglist.put(goods[0],Integer.valueOf(goods[1]));
         }
 
