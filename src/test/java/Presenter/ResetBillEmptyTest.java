@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeforTwo;
+import Model.PrintBillDetails.PrivilegeThreeForTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class ResetBillEmptyTest {
 
     ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeforTwo threeforTwo = new PrivilegeThreeforTwo();
+    PrivilegeThreeForTwo threeforTwo = new PrivilegeThreeForTwo();
     SumOfBill bill = new SumOfBill();
     ResetBillEmpty reset = new ResetBillEmpty();
 
@@ -31,12 +31,12 @@ public class ResetBillEmptyTest {
 
     }
 
-    private PrivilegeThreeforTwo.ThreeforTwo addOneThreeforTwoRecord(String name, int count, String unit) {
-        PrivilegeThreeforTwo.ThreeforTwo oneThreeforTwoRecord = new PrivilegeThreeforTwo.ThreeforTwo();
-        oneThreeforTwoRecord.name = name;
-        oneThreeforTwoRecord.count = count;
-        oneThreeforTwoRecord.unit = unit;
-        return oneThreeforTwoRecord;
+    private PrivilegeThreeForTwo.ThreeForTwo addOneThreeforTwoRecord(String name, int count, String unit) {
+        PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = new PrivilegeThreeForTwo.ThreeForTwo();
+        oneThreeForTwoRecord.name = name;
+        oneThreeForTwoRecord.count = count;
+        oneThreeForTwoRecord.unit = unit;
+        return oneThreeForTwoRecord;
     }
 
     @Test
@@ -45,8 +45,8 @@ public class ResetBillEmptyTest {
         shoppingList.shoppingArr.add(addOneBillingRecord("可口可乐",3,"瓶",3.00,6.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("羽毛球",5,"个",1.00,4.00,0.0));
         shoppingList.shoppingArr.add(addOneBillingRecord("苹果",2,"斤",5.50,11.00,0.0));
-        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
-        threeforTwo.threeforTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("可口可乐",1,"瓶"));
+        threeforTwo.threeForTwoArr.add(addOneThreeforTwoRecord("羽毛球",1,"个"));
         bill.total = 21.00;
         bill.privilege = 4.00;
         //when
@@ -54,7 +54,7 @@ public class ResetBillEmptyTest {
 
         //then
         assertThat(shoppingList.shoppingArr.size(), is(0));
-        assertThat(threeforTwo.threeforTwoArr.size(), is(0));
+        assertThat(threeforTwo.threeForTwoArr.size(), is(0));
         assertThat(bill.total, is(0.0));
         assertThat(bill.privilege, is(0.0));
     }

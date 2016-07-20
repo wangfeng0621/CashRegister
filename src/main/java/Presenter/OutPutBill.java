@@ -1,6 +1,6 @@
 package Presenter;
 
-import Model.PrintBillDetails.PrivilegeThreeforTwo;
+import Model.PrintBillDetails.PrivilegeThreeForTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 
@@ -10,7 +10,7 @@ import Model.PrintBillDetails.SumOfBill;
 public class OutPutBill {
 
     ShoppingListAll shoppingList = new ShoppingListAll();
-    PrivilegeThreeforTwo threeforTwo = new PrivilegeThreeforTwo();
+    PrivilegeThreeForTwo threeforTwo = new PrivilegeThreeForTwo();
     SumOfBill bill = new SumOfBill();
     public boolean printShoppingList() {
         int len = shoppingList.shoppingArr.size();
@@ -45,7 +45,7 @@ public class OutPutBill {
     }
 
     public boolean printThreeforTwo() {
-        int len = threeforTwo.threeforTwoArr.size();
+        int len = threeforTwo.threeForTwoArr.size();
         if( len > 0 ) {
             printThreeforTwo(len);
             return true;
@@ -56,15 +56,15 @@ public class OutPutBill {
     private void printThreeforTwo(int len) {
         System.out.println("买二赠一商品：");
         for(int i = 0; i < len; i++) {
-            PrivilegeThreeforTwo.ThreeforTwo oneThreeforTwoRecord = threeforTwo.threeforTwoArr.get(i);
-            printOneThreeforTwoRecord(oneThreeforTwoRecord);
+            PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord = threeforTwo.threeForTwoArr.get(i);
+            printOneThreeforTwoRecord(oneThreeForTwoRecord);
         }
         System.out.println("----------------------");
     }
 
-    private void printOneThreeforTwoRecord(PrivilegeThreeforTwo.ThreeforTwo oneThreeforTwoRecord) {
-        System.out.print("名称："+oneThreeforTwoRecord.name+"，");
-        System.out.println("数量："+oneThreeforTwoRecord.count+oneThreeforTwoRecord.unit);
+    private void printOneThreeforTwoRecord(PrivilegeThreeForTwo.ThreeForTwo oneThreeForTwoRecord) {
+        System.out.print("名称："+ oneThreeForTwoRecord.name+"，");
+        System.out.println("数量："+ oneThreeForTwoRecord.count+ oneThreeForTwoRecord.unit);
     }
 
     public boolean printSumOfBill() {

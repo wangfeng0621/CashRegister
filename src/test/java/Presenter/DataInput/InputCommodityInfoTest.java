@@ -1,6 +1,7 @@
 package Presenter.DataInput;
 
 import Model.CommodityRepertory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,11 @@ public class InputCommodityInfoTest {
     //从commodityInformation.txt文件中读取所有商品的基本信息,初始化商品信息
     public void Initialize_commodityInfo() {
         inputCommodityInfo = new InputCommodityInfo();
+    }
+
+    @After
+    public void clear_commodity_information(){
+        commRep.commodityInfomap.clear();
     }
 
     @Test

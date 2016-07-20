@@ -1,7 +1,7 @@
 package Presenter;
 
 import Model.CommodityRepertory;
-import Model.PrintBillDetails.PrivilegeThreeforTwo;
+import Model.PrintBillDetails.PrivilegeThreeForTwo;
 import Model.PrintBillDetails.ShoppingListAll;
 import Model.PrintBillDetails.SumOfBill;
 import Model.ShoppingList;
@@ -24,92 +24,71 @@ public class CalculatePrice {
 
             CommodityRepertory.CommodityInfo commodityInfo = CommodityRepertory.commodityInfomap.get(barcode);
             if(commodityInfo.privilege.equals("null")) {
-                notPrivilCalcu(commodityInfo,barcode);
+                notPrivilegeCalculate(commodityInfo,barcode);
             }
             else if(commodityInfo.privilege.contains("ThreeForTwo")) {
-                threeForTwoCalcu(commodityInfo,barcode);
+                threeForTwoCalculate(commodityInfo,barcode);
             }
             else if(commodityInfo.privilege.equals("0.95")){
-                sale95Calcu(commodityInfo,barcode);
+                sale95Calculate(commodityInfo,barcode);
             }
 
 
         }
     }
 
-    private void sale95Calcu(CommodityRepertory.CommodityInfo ci, String barcode) {
+    private void sale95Calculate(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        int count=0;
-        Double subtotal =0.0;
+        int count = ShoppingList.shoppinglist.get(barcode);
+        Double subtotal = ci.price * count*0.95;
+        Double privilege = ci.price * count*0.05;
+
+        printShoppingListAll(ci,count,subtotal,privilege);
+
+        printSumOfBill(subtotal,privilege);
+
+    }
+
+
+    public void notPrivilegeCalculate(CommodityRepertory.CommodityInfo ci, String barcode) {
+
         Double privilege = 0.0;
-        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
-
-        subtotal = ci.price * count*0.95;
-        privilege = ci.price * count*0.05;
-
-        printShoppingListAll(ci,count,subtotal,privilege);
-
-        printSumOfBill(subtotal,privilege);
-
-    }
-
-
-    public int  barcodeParse(String code) {
-        String[] s = code.split("-");
-        String barcode = s[0];
-        int count = Integer.valueOf(s[1])* ShoppingList.shoppinglist.get(code);
-        return count;
-    }
-
-    public void notPrivilCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
-
-        int count=0;
-        Double subtotal =0.0;
-        Double privilege = 0.0;
-
-        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
-
-        subtotal = ci.price * count;
+        int count = ShoppingList.shoppinglist.get(barcode);
+        Double subtotal = ci.price * count;
 
         printShoppingListAll(ci,count,subtotal,privilege);
 
         printSumOfBill(subtotal,privilege);
     }
 
-    private void threeForTwoCalcu(CommodityRepertory.CommodityInfo ci, String barcode) {
+    private void threeForTwoCalculate(CommodityRepertory.CommodityInfo ci, String barcode) {
 
-        int count=0;
-        int number=0;
-        Double privilege=0.0;
-        Double subtotal=0.0;
-
-        count = barcode.contains("-") ? barcodeParse(barcode) : ShoppingList.shoppinglist.get(barcode);
-
-        number = count-count/3;
-        subtotal = ci.price * number;
-        privilege = subtotal - ci.price * (count/3);
+        int count = ShoppingList.shoppinglist.get(barcode);
+        int number = count-count/3;
+        Double subtotal = ci.price * number;
+        Double privilege = subtotal - ci.price * (count/3);
 
         printShoppingListAll(ci,count,subtotal,privilege);
 
-        printThreeforTwo(ci,count/3);
+        printThreeForTwo(ci,count/3);
 
         printSumOfBill(subtotal,privilege);
 
     }
 
-    private void printSumOfBill(Double subtotal, Double privil) {
+    private void printSumOfBill(Double subtotal, Double privilege) {
 
         SumOfBill.total += subtotal;
-        SumOfBill.privilege += privil;
+        SumOfBill.privilege += privilege;
     }
 
-    private void printThreeforTwo(CommodityRepertory.CommodityInfo ci, int count) {
+    private void printThreeForTwo(CommodityRepertory.CommodityInfo ci, int count) {
 
-        PrivilegeThreeforTwo.ThreeforTwo pt = new PrivilegeThreeforTwo.ThreeforTwo();
+        PrivilegeThreeForTwo.ThreeForTwo pt = new PrivilegeThreeForTwo.ThreeForTwo();
         pt.name = ci.name;
         pt.count = count;
         pt.unit = ci.unit;
-        PrivilegeThreeforTwo.threeforTwoArr.add(pt);
+        PrivilegeThreeForTwo.threeForTwoArr.add(pt);
     }
 
     public void printShoppingListAll(CommodityRepertory.CommodityInfo ci,int count ,Double subtotal ,Double privil) {
